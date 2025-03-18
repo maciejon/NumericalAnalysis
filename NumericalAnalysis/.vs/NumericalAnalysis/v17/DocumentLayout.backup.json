@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\load_from_file.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|solutionrelative:load_from_file.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\load_from_file.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|solutionrelative:load_from_file.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\mean_squared_error.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|solutionrelative:mean_squared_error.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\mean_squared_error.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{159196DC-95C4-4B8E-B79E-7A83D0D91ECA}|NumericalAnalysis.vcxproj|solutionrelative:mean_squared_error.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "vector",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\vector",
+              "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\vector",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\vector",
+              "RelativeToolTip": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.43.34808\\include\\vector",
+              "ViewState": "AgIAAGgHAAAAAAAAAAAqwHoHAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-03-18T16:45:43.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "mean_squared_error.hpp",
+              "DocumentMoniker": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\mean_squared_error.hpp",
+              "RelativeDocumentMoniker": "mean_squared_error.hpp",
+              "ToolTip": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\mean_squared_error.hpp",
+              "RelativeToolTip": "mean_squared_error.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-18T16:42:16.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "mean_squared_error.cpp",
+              "DocumentMoniker": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\mean_squared_error.cpp",
+              "RelativeDocumentMoniker": "mean_squared_error.cpp",
+              "ToolTip": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\mean_squared_error.cpp",
+              "RelativeToolTip": "mean_squared_error.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-18T16:41:07.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-18T16:17:31.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "load_from_file.hpp",
+              "DocumentMoniker": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\load_from_file.hpp",
+              "RelativeDocumentMoniker": "load_from_file.hpp",
+              "ToolTip": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\load_from_file.hpp",
+              "RelativeToolTip": "load_from_file.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-18T16:15:34.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "load_from_file.cpp",
+              "DocumentMoniker": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\load_from_file.cpp",
+              "RelativeDocumentMoniker": "load_from_file.cpp",
+              "ToolTip": "C:\\pierdoly\\NumericalAnalysis\\NumericalAnalysis\\load_from_file.cpp",
+              "RelativeToolTip": "load_from_file.cpp",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-18T16:12:03.504Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

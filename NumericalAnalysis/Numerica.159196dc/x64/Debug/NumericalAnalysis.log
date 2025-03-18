@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\pierdoly\NumericalAnalysis\NumericalAnalysis\main.cpp(24,162): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  NumericalAnalysis.vcxproj -> C:\pierdoly\NumericalAnalysis\NumericalAnalysis\x64\Debug\NumericalAnalysis.exe
