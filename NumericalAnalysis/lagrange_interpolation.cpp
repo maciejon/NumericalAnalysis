@@ -1,7 +1,7 @@
 #include "lagrange_interpolation.hpp"
 
-float interpolacja(std::vector<float> x, std::vector<float> f, int n, float xp) {
-    float wynik = 0.0;
+float lagrange_interpolation(std::vector<float> x, std::vector<float> f, int n, float xp) {
+    float result = 0.0;
 
     for (int i = 0; i < n; i++) {
         float l = f[i];
@@ -10,7 +10,7 @@ float interpolacja(std::vector<float> x, std::vector<float> f, int n, float xp) 
                 l *= (xp - x[j]) / (x[i] - x[j]);
             }
         }
-        wynik += l;
+        result += l;
     }
-    return wynik;
+    return result;
 }

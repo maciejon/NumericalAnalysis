@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-void old_main(int step) {
+void lagrange_interpolation_main(int step) {
     function_data function_data_from_file = load_from_file("interpolacja_gr_4_ITE 1.txt");
     function_data function_data_for_interpolation;
 
@@ -16,12 +16,11 @@ void old_main(int step) {
             function_data_for_interpolation.y.push_back(function_data_from_file.y[i]);
         }
     }
-
     vector<float> interpolated_function;
 
     for (int i = 0; i < function_data_from_file.x.size(); i++)
     {
-        interpolated_function.push_back(interpolacja(function_data_for_interpolation.x, function_data_for_interpolation.y, function_data_for_interpolation.x.size(), function_data_from_file.x[i]));
+        interpolated_function.push_back(lagrange_interpolation(function_data_for_interpolation.x, function_data_for_interpolation.y, function_data_for_interpolation.x.size(), function_data_from_file.x[i]));
     }
 
     /*for (int i = 0; i < function_data_from_file.x.size(); i++)
@@ -31,12 +30,12 @@ void old_main(int step) {
 
     float error = mean_squared_error(function_data_from_file.y, interpolated_function, step);
 
-    cout << "Step: " << step << ", Sredni blad kwadratowy: " << error << endl;
+    cout << "Odleglosc miedzy wezlami: " << step << ", Sredni blad kwadratowy: " << error << endl;
 }
 
 int main() {
-    for (int i = 2; i < 50; i++)
+    for (int i = 2; i < 31; i++)
     {
-        old_main(i);
+        lagrange_interpolation_main(i);
     }
 }
