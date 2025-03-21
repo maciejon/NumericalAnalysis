@@ -23,7 +23,7 @@ float hornerValue(const vector<float>& a, double x, int n) {
 
 vector<float> newtonCoefficients(const vector<float>& x, const vector<float>& y) {
     int n = x.size();
-    vector<vector<float>> dividedDifferences(n, vector<float>(n, 0.0));
+    vector<vector<float> > dividedDifferences(n, vector<float>(n, 0.0));
     vector<float> coefficients(n, 0.0);
 
     for (int i = 0; i < n; i++) {
