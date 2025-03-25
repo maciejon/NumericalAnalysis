@@ -1,6 +1,6 @@
-using namespace std;
 #include <vector>
 
-float polynomialValue(const vector<float>& a, double x, int n);
-float hornerValue(const vector<float>& a, double x, int n);
-vector<float> newtonCoefficients(const vector<float>& x, const vector<float>& y);
+float polynomialValue(const std::vector<float>& a, double x, int n);
+float hornerValue(const std::vector<float>& a, double x, int n);
+std::vector<float> newtonCoefficients(const std::vector<float>& x, const std::vector<float>& y);
+double newtonInterpolation(const std::vector<float> x, const std::vector<float> coefficients, float inputValue);

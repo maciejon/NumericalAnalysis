@@ -45,7 +45,7 @@ int main() {
 
         auto start_time = chrono::high_resolution_clock::now();
         for (int i = 0; i < function_data_from_file.y.size(); i++) {
-            polynomialValue(function_data_from_file.x, function_data_from_file.y[i], n);
+            // cout << "X: " << function_data_from_file.y[i] << " Wartosc wielomianu: " << polynomialValue(function_data_from_file.x, function_data_from_file.y[i], n) << endl;
         }
         auto end_time = chrono::high_resolution_clock::now();
         auto time = end_time - start_time;
@@ -57,7 +57,7 @@ int main() {
 
         auto start_time = chrono::high_resolution_clock::now();
         for (int i = 0; i < function_data_from_file.y.size(); i++) {
-            hornerValue(function_data_from_file.x, function_data_from_file.y[i], n);
+            cout << "X: " << function_data_from_file.y[i] << " Wartosc wielomianu hornerem: " << hornerValue(function_data_from_file.x, function_data_from_file.y[i], n) << endl;
         }
         auto end_time = chrono::high_resolution_clock::now();
         auto time = end_time - start_time;
@@ -67,16 +67,28 @@ int main() {
     function_data function_data_from_file_N = load_from_file("interpolacja_N_gr_4.txt");
     function_data function_data_for_newton;
 
-    int step = 5;
+    int step = 15;
 
-    for (int i = 0; i < function_data_from_file.x.size(); i++)
-   {
+    for (int i = 0; i < function_data_from_file_N.x.size(); i++)
+    {
        if ((i % step) == 0)
        {
-           function_data_for_newton.x.push_back(function_data_from_file.x[i]);
-           function_data_for_newton.y.push_back(function_data_from_file.y[i]);
+           function_data_for_newton.x.push_back(function_data_from_file_N.x[i]);
+           function_data_for_newton.y.push_back(function_data_from_file_N.y[i]);
        }
-   }
+    }
 
-    // vector<float> newtonCoefficients = newtonCoefficients()
+    vector<float> newtonCo = newtonCoefficients(function_data_for_newton.x, function_data_for_newton.y);
+    
+    // for (int i=0; i<newtonCo.size(); i++){
+    //     cout << newtonCo[i] << endl;
+    // }
+
+    vector<float> newton_interpolated_function;
+
+    for (int i=0; i < function_data_from_file_N.x.size(); i++){
+       newton_interpolated_function.push_back(newtonInterpolation(function_data_for_newton.x,newtonCo,function_data_from_file_N.x[i]));
+    }
+
+    // cout << "Sredni blad: " << mean_squared_error(newton_interpolated_function, function_data_from_file_N.x, step);
 }

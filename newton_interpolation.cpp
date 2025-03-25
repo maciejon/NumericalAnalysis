@@ -42,3 +42,14 @@ vector<float> newtonCoefficients(const vector<float>& x, const vector<float>& y)
 
     return coefficients;
 }
+
+double newtonInterpolation(const vector<float> x, const vector<float> coefficients, float inputValue) {
+    float result = coefficients[0];
+    float term = 1.0;
+
+    for (int i = 1; i < x.size(); i++) {
+        term *= (inputValue - x[i - 1]);
+        result += coefficients[i] * term;
+    }
+    return result;
+}

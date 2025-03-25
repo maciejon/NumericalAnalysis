@@ -48,5 +48,9 @@ function_data load_from_file(string file_name)
     else
     {
         cout << "Cannot open file.";
+        function_data error;
+        error.x.push_back(0);
+        error.y.push_back(0);
+        return error;
     }
 }
