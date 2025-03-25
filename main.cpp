@@ -35,10 +35,8 @@ void lagrange_interpolation_main(int step) {
    cout << "Odleglosc miedzy wezlami: " << step << ", Sredni blad kwadratowy: " << error << endl;
 }
 
-
-
-int main() {
-
+void newton_main(int step) {
+    
     function_data function_data_from_file = load_from_file("interpolacja_H_gr_4.txt");
 
     for (unsigned int n = 3; n < function_data_from_file.x.size(); n++) {
@@ -49,7 +47,7 @@ int main() {
         }
         auto end_time = chrono::high_resolution_clock::now();
         auto time = end_time - start_time;
-        cout << "Czas obliczen metoda naturalna: " << std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() << "us dla n= " << n << endl;
+        // cout << "Czas obliczen metoda naturalna: " << std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() << "us dla n= " << n << endl;
     }
 
     cout << endl;
@@ -57,17 +55,14 @@ int main() {
 
         auto start_time = chrono::high_resolution_clock::now();
         for (int i = 0; i < function_data_from_file.y.size(); i++) {
-            cout << "X: " << function_data_from_file.y[i] << " Wartosc wielomianu hornerem: " << hornerValue(function_data_from_file.x, function_data_from_file.y[i], n) << endl;
+            // cout << "X: " << function_data_from_file.y[i] << " Wartosc wielomianu hornerem: " << hornerValue(function_data_from_file.x, function_data_from_file.y[i], n) << endl;
         }
         auto end_time = chrono::high_resolution_clock::now();
         auto time = end_time - start_time;
-        cout << "Czas obliczen metoda hornera: " << std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() << "us dla n= " << n << endl;
+        // cout << "Czas obliczen metoda hornera: " << std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count() << "us dla n= " << n << endl;
     }
-
     function_data function_data_from_file_N = load_from_file("interpolacja_N_gr_4.txt");
     function_data function_data_for_newton;
-
-    int step = 15;
 
     for (int i = 0; i < function_data_from_file_N.x.size(); i++)
     {
@@ -77,6 +72,7 @@ int main() {
            function_data_for_newton.y.push_back(function_data_from_file_N.y[i]);
        }
     }
+
 
     vector<float> newtonCo = newtonCoefficients(function_data_for_newton.x, function_data_for_newton.y);
     
@@ -90,5 +86,13 @@ int main() {
        newton_interpolated_function.push_back(newtonInterpolation(function_data_for_newton.x,newtonCo,function_data_from_file_N.x[i]));
     }
 
-    // cout << "Sredni blad: " << mean_squared_error(newton_interpolated_function, function_data_from_file_N.x, step);
+    cout << "Sredni blad: " << mean_squared_error(newton_interpolated_function, function_data_from_file_N.y, step) << "  (wezly co " << step << " elementow)";
+
+}
+
+int main() {
+     for (int i = 3; i < 20; i++) {
+         newton_main(i);
+     }
+    
 }
