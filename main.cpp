@@ -6,34 +6,34 @@
 #include <chrono>
 using namespace std;
 
-//void lagrange_interpolation_main(int step) {
-//    function_data function_data_from_file = load_from_file("interpolacja_gr_4_ITE 1.txt");
-//    function_data function_data_for_interpolation;
-//
-//    for (int i = 0; i < function_data_from_file.x.size(); i++)
-//    {
-//        if ((i % step) == 0)
-//        {
-//            function_data_for_interpolation.x.push_back(function_data_from_file.x[i]);
-//            function_data_for_interpolation.y.push_back(function_data_from_file.y[i]);
-//        }
-//    }
-//    vector<float> interpolated_function;
-//
-//    for (int i = 0; i < function_data_from_file.x.size(); i++)
-//    {
-//        interpolated_function.push_back(lagrange_interpolation(function_data_for_interpolation.x, function_data_for_interpolation.y, function_data_for_interpolation.x.size(), function_data_from_file.x[i]));
-//    }
-//
-//    /*for (int i = 0; i < function_data_from_file.x.size(); i++)
-//    {
-//        cout << "X: " << function_data_from_file.x[i] << " Zinterpolowane F :" << interpolated_function[i] << " Prawdziwe F: " << function_data_from_file.y[i] << endl;
-//    }*/
-//
-//    float error = mean_squared_error(function_data_from_file.y, interpolated_function, step);
-//
-//    cout << "Odleglosc miedzy wezlami: " << step << ", Sredni blad kwadratowy: " << error << endl;
-//}
+void lagrange_interpolation_main(int step) {
+   function_data function_data_from_file = load_from_file("interpolacja_gr_4_ITE 1.txt");
+   function_data function_data_for_interpolation;
+
+   for (int i = 0; i < function_data_from_file.x.size(); i++)
+   {
+       if ((i % step) == 0)
+       {
+           function_data_for_interpolation.x.push_back(function_data_from_file.x[i]);
+           function_data_for_interpolation.y.push_back(function_data_from_file.y[i]);
+       }
+   }
+   vector<float> interpolated_function;
+
+   for (int i = 0; i < function_data_from_file.x.size(); i++)
+   {
+       interpolated_function.push_back(lagrange_interpolation(function_data_for_interpolation.x, function_data_for_interpolation.y, function_data_for_interpolation.x.size(), function_data_from_file.x[i]));
+   }
+
+   /*for (int i = 0; i < function_data_from_file.x.size(); i++)
+   {
+       cout << "X: " << function_data_from_file.x[i] << " Zinterpolowane F :" << interpolated_function[i] << " Prawdziwe F: " << function_data_from_file.y[i] << endl;
+   }*/
+
+   float error = mean_squared_error(function_data_from_file.y, interpolated_function, step);
+
+   cout << "Odleglosc miedzy wezlami: " << step << ", Sredni blad kwadratowy: " << error << endl;
+}
 
 
 
@@ -65,4 +65,18 @@ int main() {
     }
 
     function_data function_data_from_file_N = load_from_file("interpolacja_N_gr_4.txt");
+    function_data function_data_for_newton;
+
+    int step = 5;
+
+    for (int i = 0; i < function_data_from_file.x.size(); i++)
+   {
+       if ((i % step) == 0)
+       {
+           function_data_for_newton.x.push_back(function_data_from_file.x[i]);
+           function_data_for_newton.y.push_back(function_data_from_file.y[i]);
+       }
+   }
+
+    // vector<float> newtonCoefficients = newtonCoefficients()
 }
