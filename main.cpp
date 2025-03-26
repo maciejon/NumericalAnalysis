@@ -6,6 +6,33 @@
 #include <chrono>
 using namespace std;
 
+void lagrange_interpolation_main(int step);
+void newton_main(int step);
+
+int main() {
+    for (int i = 3; i < 20; i++) {
+        newton_main(i);
+    }
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void lagrange_interpolation_main(int step) {
    function_data function_data_from_file = load_from_file("interpolacja_gr_4_ITE 1.txt");
    function_data function_data_for_interpolation;
@@ -90,9 +117,3 @@ void newton_main(int step) {
 
 }
 
-int main() {
-     for (int i = 3; i < 20; i++) {
-         newton_main(i);
-     }
-    
-}
