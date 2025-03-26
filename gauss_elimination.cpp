@@ -22,14 +22,14 @@ void gauss_data::partial_pivot() {
         for (int i = 0; i < n; i++) {
             int pivot_row = i;
             for (int j = i + 1; j < n; j++) {
-                if (std::abs(A[j][i]) > std::abs(A[pivot_row][i])) {
+                if (abs(A[j][i]) > abs(A[pivot_row][i])) {
                     pivot_row = j;
                 }
             }
             
             if (pivot_row != i) {
-                std::swap(A[i], A[pivot_row]);
-                std::swap(b[i], b[pivot_row]);
+                swap(A[i], A[pivot_row]);
+                swap(b[i], b[pivot_row]);
             }
             
             for (int j = i + 1; j < n; j++) {
@@ -85,13 +85,14 @@ gauss_data load_from_file_gauss(string file_name)
             if (line_number == 2) {
                 stringstream ss(line);
                 string line2_content;
-                // cout << "linia 2: " << endl;
+                cout << "linia 2: " << endl;
                 int i = 0;
                 while (getline(ss, line2_content, del)) {
                     // cout << line2_content << endl;
                     for (int j = 0; j < gauss_data.n; j++)
                         for (int k = 0; k < gauss_data.n; k++){
                             gauss_data.A[j][k] = stoi(line2_content);
+                            // cout << "j: " << j << " " << gauss_data.A[j][k] << endl;
                         }
                     i++;
                 }
