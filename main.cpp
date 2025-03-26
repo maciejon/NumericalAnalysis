@@ -10,10 +10,8 @@ void lagrange_interpolation_main(int step);
 void newton_main(int step);
 
 int main() {
-    for (int i = 3; i < 20; i++) {
-        newton_main(i);
-    }
-   
+    gauss_data gauss = load_from_file_gauss("gauss_elimination_gr4_A.txt");
+    cout << gauss.n << endl;
 }
 
 
