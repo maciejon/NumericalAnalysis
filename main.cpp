@@ -2,6 +2,7 @@
 #include "lagrange_interpolation.hpp"
 #include "mean_squared_error.hpp"
 #include "newton_interpolation.hpp"
+#include "gauss_elimination.hpp"
 #include <iostream>
 #include <chrono>
 using namespace std;
@@ -11,7 +12,15 @@ void newton_main(int step);
 
 int main() {
     gauss_data gauss = load_from_file_gauss("gauss_elimination_gr4_A.txt");
-    cout << gauss.n << endl;
+
+    gauss.partial_pivot();
+
+    for (int i=0;i<5;i++){
+            for (int j; j<5;j++){
+                cout << gauss.A[i][j] << " ";
+            }
+            cout << endl;
+        }
 }
 
 
