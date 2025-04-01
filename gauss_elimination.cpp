@@ -9,12 +9,12 @@ using namespace std;
 
 gauss_data::gauss_data(int size) : n(size), A(size, std::vector<int>(size)), b(size) {}
 
-void gauss_data::print_matrix(std::vector<std::vector<int> > A) {
+void gauss_data::print_matrix() {
         for (int i=0;i<5;i++){
-            for (int j; j<5;j++){
+            for (int j=0; j<5;j++){
                 cout << A[i][j] << " ";
             }
-            cout << endl;
+            cout << "|" << b[i] << endl;
         }
 }
 
@@ -40,6 +40,8 @@ void gauss_data::partial_pivot() {
                 }
                 b[j] -= factor * b[i];
             }
+            this->print_matrix();
+            cout << endl;
         }
     }
     
@@ -56,54 +58,42 @@ void gauss_data::partial_pivot() {
     }
 
 
-gauss_data load_from_file_gauss(string file_name)
-{
-    ifstream file;
-    file.open(file_name);
-    string line;
-    char del = '\t';
-
-    if (file.is_open())
-    {
-        int line_number = 0;
-        gauss_data gauss_data(5);
-
-        while (getline(file, line))
-        {
-            if (line_number == 0) {
-                gauss_data.n = stoi(line);
-            }
-
-            if (line_number == 1) {
-                stringstream ss(line);
-                string line1_content;
-
-                while (getline(ss, line1_content, del)) {
-                    gauss_data.b.push_back(stoi(line1_content));
-                }
-            }
-            if (line_number == 2) {
-                stringstream ss(line);
-                string line2_content;
-                cout << "linia 2: " << endl;
-                int i = 0;
-                while (getline(ss, line2_content, del)) {
-                    // cout << line2_content << endl;
-                    for (int j = 0; j < gauss_data.n; j++)
-                        for (int k = 0; k < gauss_data.n; k++){
-                            gauss_data.A[j][k] = stoi(line2_content);
-                            // cout << "j: " << j << " " << gauss_data.A[j][k] << endl;
-                        }
-                    i++;
-                }
-            }
-            line_number++;
+    gauss_data load_from_file_gauss(const std::string& filename) {
+        gauss_data data(5);
+        std::ifstream file(filename);
+        
+        if (!file) {
+            std::cerr << "Error opening file: " << filename << std::endl;
+            return data;  // Return empty/invalid object
         }
-        file.close();
-        return gauss_data;
+    
+        file >> data.n;
+        data.b.resize(data.n);
+        data.A.resize(data.n, std::vector<int>(data.n));
+    
+        for (int i = 0; i < data.n; ++i) {
+            file >> data.b[i];
+        }
+    
+        for (int i = 0; i < data.n; ++i) {
+            for (int j = 0; j < data.n; ++j) {
+                file >> data.A[i][j];
+            }
+        }
+    
+        return data;
     }
-    else
-    {
-        cout << "Cannot open file.";
+    
+    void gauss_data::verify_solution(const vector<double>& x) {
+        cout << "Sprawdzanie..." << endl;
+        for (int i = 0; i < n; i++) {
+            double sum = 0;
+            for (int j = 0; j < n; j++) {
+                sum += A[i][j] * x[j];
+            }
+            if (abs(sum - b[i]) > 1e-6) {
+                cout << "W wierszu " << i << " blad: " << sum << " != " << b[i] << endl;
+            }
+        }
+        cout << "Sprawdzenie ukonczone." << endl;
     }
-}

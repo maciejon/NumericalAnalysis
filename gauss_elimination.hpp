@@ -11,12 +11,14 @@ public:
     std::vector<std::vector<int> > A; // główna macierz
     std::vector<int> b; // wyrazy wolne
 
-    gauss_data(int size);
+    gauss_data(int size=5);
     void partial_pivot();
-    void print_matrix(std::vector<std::vector<int> > A);
+    void print_matrix();
     std::vector<double> back_substitute();
+    void verify_solution(const std::vector<double>& x);
 };
 
-gauss_data load_from_file_gauss(std::string file_name);
+// void load_from_file_gauss(const std::string filename, gauss_data& data);
+gauss_data load_from_file_gauss(const std::string& filename);
 
 #endif

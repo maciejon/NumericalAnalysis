@@ -12,15 +12,22 @@ void newton_main(int step);
 
 int main() {
     gauss_data gauss = load_from_file_gauss("gauss_elimination_gr4_A.txt");
-
-    gauss.partial_pivot();
-
     for (int i=0;i<5;i++){
-            for (int j; j<5;j++){
-                cout << gauss.A[i][j] << " ";
-            }
-            cout << endl;
+        for (int j=0; j<5;j++){
+            cout << gauss.A[i][j] << " ";
         }
+        cout << "|" << gauss.b[i] << endl;
+    }
+    cout << endl;
+    gauss.partial_pivot();
+    vector<double> solution = gauss.back_substitute();
+    gauss.verify_solution(solution);
+
+    cout << "Wynik: " << endl;
+    for (int i=0;i<5;i++){
+        cout << "X" << i << " = " << solution[i] << " ";
+        }
+
 }
 
 
