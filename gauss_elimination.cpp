@@ -48,7 +48,7 @@ std::vector<float> lu(gauss_data& data) {
 
     std::cout << "Sprawdzanie poprawnosci rozkladu LU: L * U = A" << std::endl;
     std::vector<std::vector<float> > LU(n, std::vector<float>(n, 0.0f));
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) { 
         for (int j = 0; j < n; j++) {
             for (int k = 0; k < n; k++) {
                 LU[i][j] += L[i][k] * U[k][j];
