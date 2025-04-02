@@ -9,6 +9,99 @@ using namespace std;
 
 gauss_data::gauss_data(int size) : n(size), A(size, std::vector<int>(size)), b(size) {}
 
+void print_matrix(std::vector<std::vector<float> > A){
+    for (int i=0;i<5;i++){
+            for (int j=0; j<5;j++){
+                cout << A[i][j] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+}
+
+std::vector<float> lu(gauss_data& data) {
+    int n = data.n;
+    std::vector<std::vector<float> > L(n, std::vector<float>(n, 0.0f));
+    std::vector<std::vector<float> > U(n, std::vector<float>(n, 0.0f));
+
+    //podzial na L i U
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            float sum = 0.0f;
+            for (int k = 0; k < i; k++) sum += L[i][k] * U[k][j];
+            U[i][j] = data.A[i][j] - sum;
+        }
+        for (int j = i; j < n; j++) {
+            if (i == j)
+                L[i][i] = 1.0f;
+            else {
+                float sum = 0.0f;
+                for (int k = 0; k < i; k++) sum += L[j][k] * U[k][i];
+                L[j][i] = (data.A[j][i] - sum) / U[i][i];
+            }
+        }
+        std::cout << "Iteracja " << i + 1 << " - Macierz L:" << std::endl;
+        print_matrix(L);
+        std::cout << "Iteracja " << i + 1 << " - Macierz U:" << std::endl;
+        print_matrix(U);
+    }
+
+    std::cout << "Sprawdzanie poprawnosci rozkladu LU: L * U = A" << std::endl;
+    std::vector<std::vector<float> > LU(n, std::vector<float>(n, 0.0f));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < n; k++) {
+                LU[i][j] += L[i][k] * U[k][j];
+            }
+        }
+    }
+    cout << "Macierz L * U: " << endl;
+    print_matrix(LU);
+    cout << "Oryginalna macierz A: " << endl;
+    std::vector<std::vector<float> > A_float(data.n, std::vector<float>(data.n));
+    for (int i = 0; i < data.n; i++)
+        for (int j = 0; j < data.n; j++)
+            A_float[i][j] = static_cast<float>(data.A[i][j]);
+    print_matrix(A_float);
+
+    std::vector<float> y(n, 0.0f);
+    for (int i = 0; i < n; i++) {
+        float sum = 0.0f;
+        for (int k = 0; k < i; k++) sum += L[i][k] * y[k];
+        y[i] = (data.b[i] - sum);
+    }
+
+    std::cout << "Rozwiazanie z (Ly = b): ";
+    for (float val : y) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    std::vector<float> x(n, 0.0f);
+    for (int i = n - 1; i >= 0; i--) {
+        float sum = 0.0f;
+        for (int k = i + 1; k < n; k++) sum += U[i][k] * x[k];
+        x[i] = (y[i] - sum) / U[i][i];
+    }
+
+    std::cout << "Rozwiazanie x (Ux = z): ";
+    for (float val : x) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Sprawdzanie poprawnosci: Ax = b" << std::endl;
+    for (int i = 0; i < n; i++) {
+        float sum = 0.0f;
+        for (int j = 0; j < n; j++){
+            sum += data.A[i][j] * x[j];
+        }
+        std::cout << "b[" << i << "] = " << data.b[i] << ", obliczone: " << sum << std::endl;
+    }
+    return x;
+}
+
+
 void gauss_data::print_matrix() {
         for (int i=0;i<5;i++){
             for (int j=0; j<5;j++){
@@ -18,6 +111,17 @@ void gauss_data::print_matrix() {
         }
 }
 
+
+
+
+
+
+
+
+
+
+
+//GAUSS
 void gauss_data::partial_pivot() {
         for (int i = 0; i < n; i++) {
             int pivot_row = i;

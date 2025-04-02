@@ -20,5 +20,6 @@ public:
 
 // void load_from_file_gauss(const std::string filename, gauss_data& data);
 gauss_data load_from_file_gauss(const std::string& filename);
+std::vector<float> lu(gauss_data& data);
 
 #endif

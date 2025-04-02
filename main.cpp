@@ -9,25 +9,11 @@ using namespace std;
 
 void lagrange_interpolation_main(int step);
 void newton_main(int step);
+void gauss_main();
 
 int main() {
-    gauss_data gauss = load_from_file_gauss("gauss_elimination_gr4_A.txt");
-    for (int i=0;i<5;i++){
-        for (int j=0; j<5;j++){
-            cout << gauss.A[i][j] << " ";
-        }
-        cout << "|" << gauss.b[i] << endl;
-    }
-    cout << endl;
-    gauss.partial_pivot();
-    vector<double> solution = gauss.back_substitute();
-    gauss.verify_solution(solution);
-
-    cout << "Wynik: " << endl;
-    for (int i=0;i<5;i++){
-        cout << "X" << i << " = " << solution[i] << " ";
-        }
-
+    gauss_data LU=load_from_file_gauss("LU_gr4.txt");
+    lu(LU);
 }
 
 
@@ -46,6 +32,25 @@ int main() {
 
 
 
+void gauss_main(){
+gauss_data gauss = load_from_file_gauss("gauss_elimination_gr4_A.txt");
+    for (int i=0;i<5;i++){
+        for (int j=0; j<5;j++){
+            cout << gauss.A[i][j] << " ";
+        }
+        cout << "|" << gauss.b[i] << endl;
+    }
+    cout << endl;
+    gauss.partial_pivot();
+    vector<double> solution = gauss.back_substitute();
+    gauss.verify_solution(solution);
+
+    cout << "Wynik: " << endl;
+    for (int i=0;i<5;i++){
+        cout << "X" << i << " = " << solution[i] << " ";
+        }
+
+}
 
 void lagrange_interpolation_main(int step) {
    function_data function_data_from_file = load_from_file("interpolacja_gr_4_ITE 1.txt");
