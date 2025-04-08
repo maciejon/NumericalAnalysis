@@ -55,7 +55,17 @@ std::vector<float> lu(gauss_data& data) {
             }
         }
     }
-    cout << "Macierz L * U: " << endl;
+    for (int i = 0; i < n; i++) { 
+        for (int j = 0; j < n; j++) {
+            if (abs(LU[i][j] - data.A[i][j]) > 0.00001f) {
+                cout << "Blad w rozkladzie LU w polu ["<<i<<"] ["<<j<<"] ("<< LU[i][j] << " != " << data.A[i][j] << ")" << endl;
+            }
+            else {
+                cout << "Brak bledow w polu ["<<i<<"] ["<<j<<"] ("<< LU[i][j] << " = " << data.A[i][j] << ")" << endl;
+            }
+        }
+    }
+    cout << "\nMacierz L * U: " << endl;
     print_matrix(LU);
     cout << "Oryginalna macierz A: " << endl;
     std::vector<std::vector<float> > A_float(data.n, std::vector<float>(data.n));
@@ -96,7 +106,12 @@ std::vector<float> lu(gauss_data& data) {
         for (int j = 0; j < n; j++){
             sum += data.A[i][j] * x[j];
         }
-        std::cout << "b[" << i << "] = " << data.b[i] << ", obliczone: " << sum << std::endl;
+        if (abs(sum - data.b[i]) > 0.00001f) {
+            cout << "Blad w b[" << i << "], oczekiwane: " << data.b[i] << ", otrzymane: " << sum << endl;
+        }
+        else {
+            std::cout << "Poprawne b[" << i << "] = " << data.b[i] << ", obliczone: " << sum << std::endl;
+        }
     }
     return x;
 }

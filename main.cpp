@@ -12,7 +12,7 @@ void newton_main(int step);
 void gauss_main();
 
 int main() {
-    gauss_data LU=load_from_file_gauss("LU_gr4.txt");
+    gauss_data LU=load_from_file_gauss("gauss_elimination_gr4_C.txt");
     lu(LU);
 }
 
