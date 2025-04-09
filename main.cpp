@@ -3,6 +3,7 @@
 #include "mean_squared_error.hpp"
 #include "newton_interpolation.hpp"
 #include "gauss_elimination.hpp"
+#include "integrate.hpp"
 #include <iostream>
 #include <chrono>
 using namespace std;
@@ -12,9 +13,49 @@ void newton_main(int step);
 void gauss_main();
 
 int main() {
-    gauss_data LU=load_from_file_gauss("gauss_elimination_gr4_C.txt");
-    lu(LU);
+
+    ifstream file("kwadratury_gr_4.txt");
+    if (!file) {
+        cerr << "Nie mozna otworzyc pliku.\n";
+    }
+
+    int stopien;
+    file >> stopien;
+
+    std::vector<float> wspolczynniki(stopien + 1);
+    for (int i = 0; i <= stopien; ++i) {
+        file >> wspolczynniki[i];
+    }
+
+    double a, b;
+    file >> a >> b;
+
+    std::cout << std::fixed << std::setprecision(6);
+
+    std::cout << "\nWyniki metod:\n";
+    std::cout << " n\tProstokaty\tTrapezy\t\tSimpson\n";
+
+    float dokladny_wynik = -1656.08333; //pobrany z mathDF
+    int rozmiary_przedzialow[] = { 5, 10, 20, 40, 80, 160, 320, 640, 1000, 2000, 10000, 100000};
+    for (int n : rozmiary_przedzialow) {
+        double I1 = prostokaty(wspolczynniki, a, b, n);
+        double I2 = trapezy(wspolczynniki, a, b, n);
+        double I3 = simpson(wspolczynniki, a, b, n);
+        std::cout << n << "\t" << I1 << "\t" << I2 << "\t" << I3 << "\n";
+    }
+
+    std::cout << "\nBledy:\n";
+    std::cout << "n\tProstokaty\tTrapezy\t\tSimpson\n";
+    for (int n : rozmiary_przedzialow) {
+        double I1 = prostokaty(wspolczynniki, a, b, n)-dokladny_wynik;
+        double I2 = trapezy(wspolczynniki, a, b, n)-dokladny_wynik;
+        double I3 = simpson(wspolczynniki, a, b, n)-dokladny_wynik;
+        std::cout << n << "\t" << I1 << "\t" << I2 << "\t" << I3 << "\n";
+    }
 }
+
+
+
 
 
 
