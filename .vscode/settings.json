@@ -55,6 +55,22 @@
         "exception": "cpp",
         "memory": "cpp",
         "type_traits": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "system_error": "cpp",
+        "utility": "cpp",
+        "format": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "numbers": "cpp",
+        "span": "cpp",
+        "text_encoding": "cpp"
     }
 }

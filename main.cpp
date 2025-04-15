@@ -6,6 +6,7 @@
 #include "integrate.hpp"
 #include <iostream>
 #include <chrono>
+#include <iomanip>
 using namespace std;
 
 void lagrange_interpolation_main(int step);
@@ -13,10 +14,10 @@ void newton_main(int step);
 void gauss_main();
 
 int main() {
-
     ifstream file("kwadratury_gr_4.txt");
     if (!file) {
         cerr << "Nie mozna otworzyc pliku.\n";
+        return 1;
     }
 
     int stopien;
@@ -30,28 +31,50 @@ int main() {
     double a, b;
     file >> a >> b;
 
+    // a = 3.5;
+    // b = 6.52968912439344;
+
     std::cout << std::fixed << std::setprecision(6);
 
-    std::cout << "\nWyniki metod:\n";
-    std::cout << " n\tProstokaty\tTrapezy\t\tSimpson\n";
+    std::cout << "\nWyniki metod i czasy ich wykonania:\n";
+    std::cout << "n\tProstokaty\tt us]\tTrapezy\t\tt [us]\tSimpson\t\tt [us]\n";
 
-    float dokladny_wynik = -1656.08333; //pobrany z mathDF
-    int rozmiary_przedzialow[] = { 5, 10, 20, 40, 80, 160, 320, 640, 1000, 2000, 10000, 100000};
+    float dokladny_wynik = -1656.08333; //z mathDF
+    // float dokladny_wynik = 4.202; // dla calki z cos
+    int rozmiary_przedzialow[] = { 5, 10, 20, 40, 80, 160, 320, 640, 1000, 10000, 100000, 1000000 };
+
     for (int n : rozmiary_przedzialow) {
+        auto t1_start = chrono::high_resolution_clock::now();
         double I1 = prostokaty(wspolczynniki, a, b, n);
+        auto t1_end = chrono::high_resolution_clock::now();
+        auto t1_time = chrono::duration_cast<chrono::microseconds>(t1_end - t1_start).count();
+
+        auto t2_start = chrono::high_resolution_clock::now();
         double I2 = trapezy(wspolczynniki, a, b, n);
+        auto t2_end = chrono::high_resolution_clock::now();
+        auto t2_time = chrono::duration_cast<chrono::microseconds>(t2_end - t2_start).count();
+
+        auto t3_start = chrono::high_resolution_clock::now();
         double I3 = simpson(wspolczynniki, a, b, n);
-        std::cout << n << "\t" << I1 << "\t" << I2 << "\t" << I3 << "\n";
+        auto t3_end = chrono::high_resolution_clock::now();
+        auto t3_time = chrono::duration_cast<chrono::microseconds>(t3_end - t3_start).count();
+
+        std::cout << n << "\t"
+                  << I1 << "\t" << t1_time << "\t"
+                  << I2 << "\t" << t2_time << "\t"
+                  << I3 << "\t" << t3_time << "\n";
     }
 
     std::cout << "\nBledy:\n";
     std::cout << "n\tProstokaty\tTrapezy\t\tSimpson\n";
     for (int n : rozmiary_przedzialow) {
-        double I1 = prostokaty(wspolczynniki, a, b, n)-dokladny_wynik;
-        double I2 = trapezy(wspolczynniki, a, b, n)-dokladny_wynik;
-        double I3 = simpson(wspolczynniki, a, b, n)-dokladny_wynik;
+        double I1 = prostokaty(wspolczynniki, a, b, n) - dokladny_wynik;
+        double I2 = trapezy(wspolczynniki, a, b, n) - dokladny_wynik;
+        double I3 = simpson(wspolczynniki, a, b, n) - dokladny_wynik;
         std::cout << n << "\t" << I1 << "\t" << I2 << "\t" << I3 << "\n";
     }
+
+    return 0;
 }
 
 

@@ -1,4 +1,5 @@
 #include "newton_interpolation.hpp"
+#include <math.h>
 using namespace std;
 
 float polynomialValue(const vector<float>& a, double x, int n) {
@@ -14,6 +15,7 @@ float polynomialValue(const vector<float>& a, double x, int n) {
 }
 
 float hornerValue(const vector<float>& a, double x, int n) {
+    // return x * std::pow(std::cos(x), 3);
     float result = 0.0;
     for (int i = n - 1; i >= 0; i--) {
         result = result * x + a[i];
