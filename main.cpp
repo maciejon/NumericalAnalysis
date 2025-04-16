@@ -4,6 +4,7 @@
 #include "newton_interpolation.hpp"
 #include "gauss_elimination.hpp"
 #include "integrate.hpp"
+#include "gauss_legendre.hpp"
 #include <iostream>
 #include <chrono>
 #include <iomanip>
@@ -12,12 +13,56 @@ using namespace std;
 void lagrange_interpolation_main(int step);
 void newton_main(int step);
 void gauss_main();
+void integrate1_main();
 
 int main() {
-    ifstream file("kwadratury_gr_4.txt");
+
+    double exact1 = -10.1010101105917;
+
+    for (int intervals : {1,2,3,5,10,20,50,100,1000}){
+        for (int n : {2, 3, 4}) {
+            double result = section_integrate(f1, 1, 4.764798248, intervals, n);
+            cout << "ilosc przedzialow: " << intervals << endl;
+            cout << "n = " << n << ", wynik = " << result << "\n";
+            cout << "blad = " << abs(result-exact1) << endl;
+        }
+        cout << endl;
+    }
+
+    double exact2 = -9876.54321007546; 
+    for (int intervals : {1,2,3,5,10,20,50,100,1000}){
+        for (int n : {2, 3, 4}) {
+            double result = section_integrate(f2, -2, 3.20870913294, intervals, n);
+            cout << "ilosc przedzialow: " << intervals << endl;
+            cout << "n = " << n << ", wynik = " << result << "\n";
+            cout << "blad = " << abs(result-exact2) << endl;
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void integrate1_main(){
+        ifstream file("kwadratury_gr_4.txt");
     if (!file) {
         cerr << "Nie mozna otworzyc pliku.\n";
-        return 1;
     }
 
     int stopien;
@@ -73,28 +118,7 @@ int main() {
         double I3 = simpson(wspolczynniki, a, b, n) - dokladny_wynik;
         std::cout << n << "\t" << I1 << "\t" << I2 << "\t" << I3 << "\n";
     }
-
-    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void gauss_main(){
 gauss_data gauss = load_from_file_gauss("gauss_elimination_gr4_A.txt");
