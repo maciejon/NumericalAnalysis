@@ -1,6 +1,7 @@
 #include <functional>
 #include <vector>
 #include <string>
+#include <cmath>
 
 double transform(double x, double a, double b);
 
@@ -36,8 +37,9 @@ struct GaussLegendre {
         return sum * (b - a) / 2.0;
     }
 };
+
 double f1(double x);
 double f2(double x);
+double f3(double x);
 
-void test_function(std::function<double(double)> f, double exact, double a, double b, const std::string& name);
 double section_integrate(std::function<double(double)> f, double a, double b, int n_intervals, int n_nodes);

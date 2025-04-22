@@ -18,6 +18,10 @@ double f2(double x) {
     return exp(x*x)*(1-x);
 }
 
+double f3(double x){
+    return -5 + 5*x - x*x + 7*x*x*x -5*x*x*x*x;
+}
+
 double section_integrate(std::function<double(double)> f, double a, double b, int n_intervals, int n_nodes) {
     GaussLegendre gl(n_nodes);
     double total = 0.0;

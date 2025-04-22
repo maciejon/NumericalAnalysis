@@ -29,6 +29,8 @@ int main() {
         cout << endl;
     }
 
+    cout << "------------------------------------------------ DRUGA FUNKCJA ------------------------------------------------\n\n";
+
     double exact2 = -9876.54321007546; 
     for (int intervals : {1,2,3,5,10,20,50,100,1000}){
         for (int n : {2, 3, 4}) {
@@ -39,6 +41,20 @@ int main() {
         }
         cout << endl;
     }
+    
+    cout << "------------------------------------------------ TRZECIA FUNKCJA ------------------------------------------------\n\n";
+
+    double exact3 = -1656.08333;
+    for (int intervals : {1,2,3,5,10,20,50,100,1000}){
+        for (int n : {2, 3, 4}) {
+            double result = section_integrate(f3, -4, 3, intervals, n);
+            cout << "ilosc przedzialow: " << intervals << endl;
+            cout << "n = " << n << ", wynik = " << result << "\n";
+            cout << "blad = " << abs(result-exact3) << endl;
+        }
+        cout << endl;
+    }
+
     return 0;
 }
 
