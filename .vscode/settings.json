@@ -71,6 +71,7 @@
         "iomanip": "cpp",
         "numbers": "cpp",
         "span": "cpp",
-        "text_encoding": "cpp"
+        "text_encoding": "cpp",
+        "__string": "cpp"
     }
 }

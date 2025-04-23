@@ -5,6 +5,7 @@
 #include "gauss_elimination.hpp"
 #include "integrate.hpp"
 #include "gauss_legendre.hpp"
+#include "approximate.hpp"
 #include <iostream>
 #include <chrono>
 #include <iomanip>
@@ -14,8 +15,40 @@ void lagrange_interpolation_main(int step);
 void newton_main(int step);
 void gauss_main();
 void integrate1_main();
+void gauss_legendre_main();
+
+double f4(double x){
+    return (exp(x) * cos(5*x) - x*x*x);
+}
 
 int main() {
+
+    cout <<"1\n\n";
+    Approximator approx(3, -1, 2, 10, 4);
+        cout <<"2\n\n";
+    auto coeffs = approx.approximate(f4);
+        cout <<"3\n\n";
+    approx.test_accuracy(f4, coeffs);
+        cout <<"4\n\n";
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void gauss_legendre_main(){
 
     double exact1 = -10.1010101105917;
 
@@ -55,25 +88,7 @@ int main() {
         cout << endl;
     }
 
-    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void integrate1_main(){
         ifstream file("kwadratury_gr_4.txt");

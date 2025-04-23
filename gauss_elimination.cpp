@@ -7,7 +7,7 @@
 #include "gauss_elimination.hpp"
 using namespace std;
 
-gauss_data::gauss_data(int size) : n(size), A(size, std::vector<int>(size)), b(size) {}
+gauss_data::gauss_data(int size) : n(size), A(size, std::vector<double>(size)), b(size) {}
 
 void print_matrix(std::vector<std::vector<float> > A){
     for (int i=0;i<5;i++){
@@ -152,8 +152,8 @@ void gauss_data::partial_pivot() {
             }
             
             for (int j = i + 1; j < n; j++) {
-                if (A[i][i] == 0) continue;
-                double factor = static_cast<double>(A[j][i]) / A[i][i];
+                if (abs(A[i][i]) < 0.000001) continue;
+                double factor = (A[j][i]) / A[i][i];
                 for (int k = i; k < n; k++) {
                     A[j][k] -= factor * A[i][k];
                 }
@@ -188,7 +188,7 @@ void gauss_data::partial_pivot() {
     
         file >> data.n;
         data.b.resize(data.n);
-        data.A.resize(data.n, std::vector<int>(data.n));
+        data.A.resize(data.n, std::vector<double>(data.n));
     
         for (int i = 0; i < data.n; ++i) {
             file >> data.b[i];

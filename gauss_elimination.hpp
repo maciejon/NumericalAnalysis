@@ -8,8 +8,8 @@
 class gauss_data {
 public:
     int n; // liczba równań
-    std::vector<std::vector<int> > A; // główna macierz
-    std::vector<int> b; // wyrazy wolne
+    std::vector<std::vector<double> > A; // główna macierz
+    std::vector<double> b; // wyrazy wolne
 
     gauss_data(int size=5);
     void partial_pivot();
