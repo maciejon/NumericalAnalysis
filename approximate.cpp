@@ -11,7 +11,6 @@ std::vector<double> Approximator::approximate(std::function<double(double)> f) {
     data.A.resize(degree + 1, std::vector<double>(degree + 1));
     data.b.resize(degree + 1);
 
-
     for (int i = 0; i <= degree; ++i) {
         data.b[i] = section_integrate([=](double x) {
             return f(x) * pow(x, i);
@@ -38,10 +37,15 @@ double Approximator::evaluate(const std::vector<double>& coeffs, double x) {
 }
 
 void Approximator::test_accuracy(std::function<double(double)> f, const std::vector<double>& coeffs) {
-    std::cout << "\nPorownanie wartosci dokladnych i aproksymowanych:\n";
+    // std::cout << "\nPorownanie wartosci dokladnych i aproksymowanych:\n";
+    double suma_bledow = 0;
+    int i=0;
     for (double x = a; x <= b; x += 0.2) {
         double fx = f(x);
         double px = evaluate(coeffs, x);
-        std::cout << "x = " << x << ", f(x) = " << fx << ", p(x) = " << px << ", blad = " << fabs(fx - px) << std::endl;
+        std::cout << "x = " << x << ", blad = " << fabs(fx - px) << std::endl;
+        suma_bledow += fabs(fx - px);
+        i++;
     }
+    // std::cout << "\nSredni blad: " << suma_bledow/i;
 }

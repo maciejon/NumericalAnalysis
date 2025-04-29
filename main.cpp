@@ -16,6 +16,7 @@ void newton_main(int step);
 void gauss_main();
 void integrate1_main();
 void gauss_legendre_main();
+void approximate_main(int degree);
 
 double f4(double x){
     return (exp(x) * cos(5*x) - x*x*x);
@@ -23,10 +24,10 @@ double f4(double x){
 
 int main() {
 
-    Approximator approx(3, -1, 2, 10, 4);
-    auto coeffs = approx.approximate(f4);
-    approx.test_accuracy(f4, coeffs);
-    return 0;
+    for (int degree = 2; degree <21;degree++){
+        cout << "\nSTOPIEN BAZY: " << degree;
+        approximate_main(degree);
+    }
 }
 
 
@@ -42,7 +43,12 @@ int main() {
 
 
 
-
+void approximate_main(int degree)
+{
+    Approximator approx(degree, -1, 2, 10, 4);
+    auto coeffs = approx.approximate(f4);
+    approx.test_accuracy(f4, coeffs);
+}
 
 void gauss_legendre_main(){
 

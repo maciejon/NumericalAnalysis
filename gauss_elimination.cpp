@@ -160,7 +160,7 @@ void gauss_data::partial_pivot() {
                 b[j] -= factor * b[i];
             }
             // this->print_matrix();
-            cout << endl;
+            // cout << endl;
         }
     }
     
