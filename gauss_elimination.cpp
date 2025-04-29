@@ -118,8 +118,8 @@ std::vector<float> lu(gauss_data& data) {
 
 
 void gauss_data::print_matrix() {
-        for (int i=0;i<5;i++){
-            for (int j=0; j<5;j++){
+        for (int i=0;i<4;i++){
+            for (int j=0; j<4;j++){
                 cout << A[i][j] << " ";
             }
             cout << "|" << b[i] << endl;
@@ -159,7 +159,7 @@ void gauss_data::partial_pivot() {
                 }
                 b[j] -= factor * b[i];
             }
-            this->print_matrix();
+            // this->print_matrix();
             cout << endl;
         }
     }

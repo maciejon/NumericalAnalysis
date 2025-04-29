@@ -23,13 +23,9 @@ double f4(double x){
 
 int main() {
 
-    cout <<"1\n\n";
     Approximator approx(3, -1, 2, 10, 4);
-        cout <<"2\n\n";
     auto coeffs = approx.approximate(f4);
-        cout <<"3\n\n";
     approx.test_accuracy(f4, coeffs);
-        cout <<"4\n\n";
     return 0;
 }
 

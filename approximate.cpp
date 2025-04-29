@@ -24,11 +24,8 @@ std::vector<double> Approximator::approximate(std::function<double(double)> f) {
             data.A[i][j] = val;
         }
     }
-    std::cout << "aprx 1\n\n";
     data.partial_pivot();
-    std::cout << "aprx 2\n\n";
     std::vector<double> x = data.back_substitute();
-    std::cout << "aprx 3\n\n";
     return x;
 }
 
@@ -41,10 +38,10 @@ double Approximator::evaluate(const std::vector<double>& coeffs, double x) {
 }
 
 void Approximator::test_accuracy(std::function<double(double)> f, const std::vector<double>& coeffs) {
-    std::cout << "\nPorównanie wartości dokładnych i aproksymowanych:\n";
+    std::cout << "\nPorownanie wartosci dokladnych i aproksymowanych:\n";
     for (double x = a; x <= b; x += 0.2) {
         double fx = f(x);
         double px = evaluate(coeffs, x);
-        std::cout << "x = " << x << ", f(x) = " << fx << ", p(x) = " << px << ", blad = " << abs(fx - px) << std::endl;
+        std::cout << "x = " << x << ", f(x) = " << fx << ", p(x) = " << px << ", blad = " << fabs(fx - px) << std::endl;
     }
 }

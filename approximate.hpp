@@ -8,6 +8,7 @@ struct Approximator {
     double a, b;
     int n_intervals, n_nodes;
 
+    // degree_ - stopien bazy; a,b - zakres apr.; intervals-ilosc przedzialow; nodes- liczba węzłów
     Approximator(int degree_, double a_, double b_, int intervals, int nodes);
     
     std::vector<double> approximate(std::function<double(double)> f);
