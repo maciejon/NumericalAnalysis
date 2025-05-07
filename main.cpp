@@ -6,6 +6,7 @@
 #include "integrate.hpp"
 #include "gauss_legendre.hpp"
 #include "approximate.hpp"
+#include "differential_equation.hpp"
 #include <iostream>
 #include <chrono>
 #include <iomanip>
@@ -17,17 +18,20 @@ void gauss_main();
 void integrate1_main();
 void gauss_legendre_main();
 void approximate_main(int degree);
-
-double f4(double x){
-    return (exp(x) * cos(5*x) - x*x*x);
-}
+double f4(double x);
 
 int main() {
 
-    for (int degree = 2; degree <21;degree++){
-        cout << "\nSTOPIEN BAZY: " << degree;
-        approximate_main(degree);
+    double a = 0;
+    double b = 2027;
+    double y0 = 2027;
+    double exact_temperature = 319.97381; // alfa=5,time=2027
+    // for (b;b>=0;b-=5){
+    for (int steps : {100,200,500,1000,10000}){
+        cout << "steps: " << steps << " T: " << solve_diff(f_sphere_cooling,steps,a,b,y0) << " blad: " << abs(solve_diff(f_sphere_cooling,steps,a,b,y0) - exact_temperature) << endl ;
     }
+    // }
+    return 0;
 }
 
 
@@ -48,6 +52,10 @@ void approximate_main(int degree)
     Approximator approx(degree, -1, 2, 10, 4);
     auto coeffs = approx.approximate(f4);
     approx.test_accuracy(f4, coeffs);
+}
+
+double f4(double x){
+    return (exp(x) * cos(5*x) - x*x*x);
 }
 
 void gauss_legendre_main(){
