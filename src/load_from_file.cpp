@@ -1,8 +1,9 @@
-#include "load_from_file.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
+
+#include <load_from_file.hpp>
 using namespace std;
 
 function_data load_from_file(string file_name)

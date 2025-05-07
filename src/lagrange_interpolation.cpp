@@ -1,4 +1,4 @@
-#include "lagrange_interpolation.hpp"
+#include <lagrange_interpolation.hpp>
 
 float lagrange_interpolation(std::vector<float> x, std::vector<float> f, int n, float xp) {
     float result = 0.0;

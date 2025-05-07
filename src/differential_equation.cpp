@@ -1,4 +1,7 @@
-#include "differential_equation.hpp"
+#include <cmath>
+
+#include <differential_equation.hpp>
+
 using namespace std;
 
 double f_sphere_cooling(double T){
