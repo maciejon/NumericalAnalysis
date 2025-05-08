@@ -7,6 +7,7 @@
 #include "gauss_legendre.hpp"
 #include "approximate.hpp"
 #include "differential_equation.hpp"
+#include <fstream>
 #include <iostream>
 #include <chrono>
 #include <iomanip>
@@ -42,12 +43,17 @@ void differential_equation_main(){
     double a = 0;
     double b = 2027;
     double y0 = 2027;
-    double exact_temperature = 319.97381; // alfa=5,time=2027
-    // for (b;b>=0;b-=5){
-    for (int steps : {100,200,500,1000,10000}){
-        cout << "steps: " << steps << " T: " << solve_diff(f_sphere_cooling,steps,a,b,y0) << " blad: " << abs(solve_diff(f_sphere_cooling,steps,a,b,y0) - exact_temperature) << endl ;
+    double exact_temperature = 182.57481; // alfa=-27,time=2027
+
+    std::ofstream file("diff_times_results.csv");
+    for (b;b>=0;b-=1){
+    // for (int steps =450;steps<=1000;steps++){
+        double T = solve_diff(f_sphere_cooling,10000,a,b,y0);
+        double abs_error = abs(T-exact_temperature);
+
+        cout << b << "," << T << "\n";
+        file << b << "," << T << "\n";
     }
-    // }
 }
 
 void approximate_main(int degree)
