@@ -45,17 +45,47 @@ void differential_equation_main(){
     double y0 = 2027;
     double exact_temperature = 182.57481; // alfa=-27,time=2027
 
-    std::ofstream file("diff_times_results.csv");
-    // for (b;b>=1990;b-=1){
+    std::ofstream file("diff_cooling_results.csv");
+    std::ofstream file2("diff_errors_results.csv");
+    // for (b;b>=1;b-=1){
     // for (int steps =266;steps<=1000;steps++){
-    for (int steps : {500,1000,10000}){
-        double T = euler_diff(f_sphere_cooling,steps,a,b,y0);
-        double abs_error = abs(T-exact_temperature);
+    for (int steps : {300,500,1000,10000}){
+        cout << "Ilosc przedzialow " << steps << ": " << endl;
 
-        cout << "Ilosc przedzialow: " << steps << ", Temperatura: " << T << ", blad: " << abs_error << endl;
-        // cout << "Temperatura po " << b << "s: " << T << " K\n";
-        // file << b << "," << T << "\n";
+        double T = euler_diff(f_sphere_cooling,steps,a,b,y0);
+        double squared_error = (T-exact_temperature)*(T-exact_temperature);
+
+        cout << "Euler T ------- " << T << ", blad: " << squared_error << endl;
+
+        T = heun_diff(f_sphere_cooling,steps,a,b,y0);
+        squared_error = (T-exact_temperature)*(T-exact_temperature);
+
+        cout << "Heun T -------- " << T << ", blad: " << squared_error << endl;
+
+        T = midpoint_diff(f_sphere_cooling,steps,a,b,y0);
+        squared_error = (T-exact_temperature)*(T-exact_temperature);
+
+        cout << "Midpoint T ---- " << T << ", blad: " << squared_error << endl;
+
+        T = runge_kutta_diff(f_sphere_cooling,steps,a,b,y0);
+        squared_error = (T-exact_temperature)*(T-exact_temperature);
+
+        cout << "Runge Kutta T - " << T << ", blad: " << squared_error << endl;
+
+        cout << endl;
     }
+    file << "t,Euler T,Heun T,Midpoint T,Runge Kutta T\n";
+    for (b;b>=1;b-=1){
+        file << b << "," << euler_diff(f_sphere_cooling,1000,a,b,y0) << ","<< heun_diff(f_sphere_cooling,1000,a,b,y0) << "," << midpoint_diff(f_sphere_cooling,1000,a,b,y0) << "," << runge_kutta_diff(f_sphere_cooling,1000,a,b,y0) << endl;
+    }
+    file << "0,2027,2027,2027,2027\n";
+
+    b=2027;
+    file2 << "steps,Error Euler,Error Heun,Error Midpoint,Error Runge Kutta\n";
+    for (int steps = 300; steps<=1000;steps++){
+        file2 << steps << "," << pow(euler_diff(f_sphere_cooling,steps,a,b,y0)-exact_temperature,2) << ","<< pow(heun_diff(f_sphere_cooling,steps,a,b,y0)-exact_temperature,2) << "," << pow(midpoint_diff(f_sphere_cooling,steps,a,b,y0)-exact_temperature,2) << "," << pow(runge_kutta_diff(f_sphere_cooling,steps,a,b,y0)-exact_temperature,2) << endl;
+    }
+
 }
 
 void approximate_main(int degree)
