@@ -46,13 +46,15 @@ void differential_equation_main(){
     double exact_temperature = 182.57481; // alfa=-27,time=2027
 
     std::ofstream file("diff_times_results.csv");
-    for (b;b>=0;b-=1){
+    // for (b;b>=1990;b-=1){
     // for (int steps =450;steps<=1000;steps++){
-        double T = solve_diff(f_sphere_cooling,10000,a,b,y0);
+    for (int steps : {500,1000,10000}){
+        double T = solve_diff(f_sphere_cooling,steps,a,b,y0);
         double abs_error = abs(T-exact_temperature);
 
-        cout << b << "," << T << "\n";
-        file << b << "," << T << "\n";
+        cout << "Ilosc przedzialow: " << steps << ", Temperatura: " << T << ", blad: " << abs_error << endl;
+        // cout << "Temperatura po " << b << "s: " << T << " K\n";
+        // file << b << "," << T << "\n";
     }
 }
 
