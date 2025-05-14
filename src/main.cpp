@@ -47,9 +47,9 @@ void differential_equation_main(){
 
     std::ofstream file("diff_times_results.csv");
     // for (b;b>=1990;b-=1){
-    // for (int steps =450;steps<=1000;steps++){
+    // for (int steps =266;steps<=1000;steps++){
     for (int steps : {500,1000,10000}){
-        double T = solve_diff(f_sphere_cooling,steps,a,b,y0);
+        double T = euler_diff(f_sphere_cooling,steps,a,b,y0);
         double abs_error = abs(T-exact_temperature);
 
         cout << "Ilosc przedzialow: " << steps << ", Temperatura: " << T << ", blad: " << abs_error << endl;
