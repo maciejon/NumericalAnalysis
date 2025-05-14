@@ -3,7 +3,8 @@
 #include <functional>
 #include <iomanip>
 #include <vector>
-#include "gauss_legendre.hpp"
+
+#include <gauss_legendre.hpp>
 
 // przeksztalcanie przedzialu a-b na -1-1
 double transform(double x, double a, double b) {

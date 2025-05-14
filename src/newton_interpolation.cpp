@@ -1,5 +1,7 @@
-#include "newton_interpolation.hpp"
 #include <math.h>
+
+#include <newton_interpolation.hpp>
+
 using namespace std;
 
 float polynomialValue(const vector<float>& a, double x, int n) {

@@ -2,8 +2,9 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "newton_interpolation.hpp"
-#include "integrate.hpp"
+
+#include <newton_interpolation.hpp>
+#include <integrate.hpp>
 using namespace std;
 
 // wspolczynniki, a do b: zakres calkowania, n: ilosc przedzialow

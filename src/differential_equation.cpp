@@ -1,8 +1,11 @@
-#include "differential_equation.hpp"
+#include <cmath>
+
+#include <differential_equation.hpp>
+
 using namespace std;
 
 double f_sphere_cooling(double T){
-    return (-5 * pow(10,-12) * pow(T,4));
+    return (-27 * pow(10,-12) * pow(T,4));
 }
 
 //f - y'=f, n-ilosc przedzialow, a-b przedzial calkowania, y0 - poczatkowy y

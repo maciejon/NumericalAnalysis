@@ -1,5 +1,6 @@
-#include "mean_squared_error.hpp"
 #include <iostream>
+
+#include <mean_squared_error.hpp>
 
 float mean_squared_error(std::vector<float> f, std::vector<float> g, int step)
 {

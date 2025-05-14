@@ -1,6 +1,6 @@
-#include "approximate.hpp"
-#include "gauss_elimination.hpp"
-#include "gauss_legendre.hpp"
+#include <approximate.hpp>
+#include <gauss_elimination.hpp>
+#include <gauss_legendre.hpp>
 #include <iostream>
 #include <cmath>
 
