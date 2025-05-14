@@ -27,7 +27,7 @@ int main() {
     double y0 = 2027;
     double exact_temperature = 319.97381; // alfa=5,time=2027
     // for (b;b>=0;b-=5){
-    for (int steps : {100,200,500,1000,10000}){
+    for (int steps : {100,200,500,1000,5000,10000}){
         cout << "steps: " << steps << " T: " << solve_diff(f_sphere_cooling,steps,a,b,y0) << " blad: " << abs(solve_diff(f_sphere_cooling,steps,a,b,y0) - exact_temperature) << endl ;
     }
     // }
