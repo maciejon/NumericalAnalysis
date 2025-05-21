@@ -7,6 +7,7 @@
 #include "gauss_legendre.hpp"
 #include "approximate.hpp"
 #include "differential_equation.hpp"
+#include <nonlinear_equations.hpp>
 #include <fstream>
 #include <iostream>
 #include <chrono>
@@ -23,8 +24,19 @@ double f4(double x);
 void differential_equation_main();
 
 int main() {
-
-    differential_equation_main();
+    double a = -3;
+    double b_startowe = 4;
+    // for (a;a<b_startowe;a+=0.1){
+    // double b = a + 0.1;
+    double b = b_startowe;
+    // if(isfinite(bisection(fn2,a,b)) && isfinite(newtons_nonlinear(fn2,dfn2,a,b)) && isfinite(secants(fn2,a,b)))
+    cout << "Zakres " << a << " -> " << b << ". " << endl;
+    cout << "Miejsca zerowe: " << endl;
+    cout << "Bisekcja: " << bisection(fn2,a,b) << endl;
+    cout << "Newton: " << newtons_nonlinear(fn2,dfn2,a,b) << endl;
+    cout << "Sieczne: " << secants(fn2,a,b) << endl;
+    cout << "\n\n";
+    // }
     return 0;
 }
 
