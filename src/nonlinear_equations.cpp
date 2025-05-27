@@ -1,4 +1,5 @@
 #include <nonlinear_equations.hpp>
+#include <math.h>
 using namespace std;
 
 double fn1(double x){
@@ -31,11 +32,11 @@ double df_num(std::function<double(double)> f, double x, double h=1e-6){
 
 double bisection(std::function<double(double)> f, double a, double b, double tol)
 {
-    // if (f(a) * f(b) >= 0)
-    // {
-    //     cout << "no root here";
-    //     return 0;
-    // }
+    if (f(a) * f(b) >= 0)
+    {
+        cout << "no root here";
+        return INFINITY;
+    }
 
     double c = a;
     while ((b-a) >= tol)
@@ -72,8 +73,8 @@ double secants(std::function<double(double)> f, double a, double b, double tol, 
         if (abs(b - a) < tol || abs(fb) < tol)
             return b;
     }
-
-    cout << "Secant method did not converge within max_iter." << endl;
+    return INFINITY;
+    // cout << "Secant method did not converge within max_iter." << endl;
 }
 
 double newtons_nonlinear(std::function<double(double)> f, std::function<double(double)> df, double x, double tol, int max_iter) {
@@ -83,7 +84,7 @@ double newtons_nonlinear(std::function<double(double)> f, std::function<double(d
         double dfx = df(x);
 
         if (std::abs(dfx) < 1e-14)
-            throw std::runtime_error("Zero derivative — Newton's method fails.");
+            return INFINITY;
 
         double x_new = x - fx / dfx;
 
