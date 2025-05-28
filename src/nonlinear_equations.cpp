@@ -26,6 +26,18 @@ double dfn3(double x){
     return (3*M_PI*(x+2)*cos(3*M_PI*x)-sin(3*M_PI*x))/((x+2)*(x+2))-1/((x+4)*(x+4));
 }
 
+double fn21(double x){
+    return log10(x+1) - x*x*x;
+}
+
+double fn22(double x){
+    return cosh(x) - sqrt(x*x) - 0.55;
+}
+
+double fn23(double x){
+    return (cos(3*M_PI*x))/(x+1);
+}
+
 double df_num(std::function<double(double)> f, double x, double h=1e-6){
     return (f(x+h)-f(x-h)) / (h*2);
 }
@@ -93,4 +105,30 @@ double newtons_nonlinear(std::function<double(double)> f, std::function<double(d
 
         x = x_new;
     }
+}
+
+double falsi(std::function<double(double)> f, double a, double b, double tol, int max_iter){
+
+    if (f(a) * f(b) >= 0) {
+        return NAN;
+    }
+    double c = a;
+
+    for (int i = 0; i < max_iter; ++i) {
+        c = (a * f(b) - b * f(a)) / (f(b) - f(a));
+        double fc = f(c);
+
+        if (std::abs(fc) < tol) {
+            return c;
+        }
+
+        if (f(a) * fc < 0) {
+            b = c;
+        } else {
+            a = c;
+        }
+        cout << "Nr. iteracji: " << i << " ,przyblizenie: " << c << endl;
+    }
+
+    return c;
 }
