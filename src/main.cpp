@@ -31,19 +31,21 @@ int main() {
     // for (a;a<b_startowe;a+=0.01){
     // double b = a + 0.01;
     double b = b_startowe;
-    #define FNC fn3
-    #define DFNC dfn3
+    #define FNC fn21
+    #define DFNC dfn21
     double root_bisection = bisection(FNC,a,b);
-    double root_newton = newtons_nonlinear(FNC,DFNC,a);
+    // double root_newton = newtons_nonlinear(FNC,DFNC,a);
     double root_newton_num = newtons_nonlinear_numeric(FNC,a);
     double root_secants = secants(FNC,a,b);
-    if(isfinite(root_bisection) && isfinite(root_newton) && isfinite(root_secants)){
+    double root_falsi = falsi(FNC,a,b);
+    if(isfinite(root_bisection) && isfinite(root_secants)){
         cout << "Zakres " << a << " -> " << b << ". " << endl;
         cout << "Miejsca zerowe: " << endl;
         cout << "Bisekcja: " << root_bisection << " Blad: " << abs(FNC(root_bisection)) << endl;
-        cout << "Newton analitycznie: " << root_newton << " Blad: " << abs(FNC(root_newton)) << endl;
+        // cout << "Newton analitycznie: " << root_newton << " Blad: " << abs(FNC(root_newton)) << endl;
         cout << "Newton numerycznie: " << root_newton_num << " Blad: " << abs(FNC(root_newton_num)) << endl;
         cout << "Sieczne: " << root_secants << " Blad: " << abs(FNC(root_secants)) << endl;
+        cout << "Falsi: " << root_falsi << " Blad: " << abs(FNC(root_falsi)) << endl;
         // cout << "Bisekcja: " << root_bisection << endl;
         // cout << "Newton analitycznie: " << root_newton <<  endl;
         // cout << "Newton numerycznie: " << root_newton_num <<  endl;
