@@ -25,50 +25,45 @@ void differential_equation_main();
 
 int main() {
 
-    double a = -3;
-    double b_startowe = 4;
-    for (a;a<b_startowe;a+=0.01){
-    double b = a + 0.01;
-    // double b = b_startowe;
-    #define FNC fn2
-    #define DFNC dfn2
+    double a = 1;
+    double b_startowe = 1.1;
+    int ilosc_miejsc_zerowych = 0;
+    // for (a;a<b_startowe;a+=0.01){
+    // double b = a + 0.01;
+    double b = b_startowe;
+    #define FNC fn3
+    #define DFNC dfn3
     double root_bisection = bisection(FNC,a,b);
-    double root_newton = newtons_nonlinear(FNC,DFNC,a,b);
+    double root_newton = newtons_nonlinear(FNC,DFNC,a);
+    double root_newton_num = newtons_nonlinear_numeric(FNC,a);
     double root_secants = secants(FNC,a,b);
     if(isfinite(root_bisection) && isfinite(root_newton) && isfinite(root_secants)){
         cout << "Zakres " << a << " -> " << b << ". " << endl;
         cout << "Miejsca zerowe: " << endl;
-        cout << "Bisekcja: " << root_bisection << "Blad: " << abs(FNC(root_bisection)) << endl;
-        cout << "Newton: " << root_newton << endl;
-        cout << "Sieczne: " << root_secants << endl;
+        cout << "Bisekcja: " << root_bisection << " Blad: " << abs(FNC(root_bisection)) << endl;
+        cout << "Newton analitycznie: " << root_newton << " Blad: " << abs(FNC(root_newton)) << endl;
+        cout << "Newton numerycznie: " << root_newton_num << " Blad: " << abs(FNC(root_newton_num)) << endl;
+        cout << "Sieczne: " << root_secants << " Blad: " << abs(FNC(root_secants)) << endl;
+        // cout << "Bisekcja: " << root_bisection << endl;
+        // cout << "Newton analitycznie: " << root_newton <<  endl;
+        // cout << "Newton numerycznie: " << root_newton_num <<  endl;
+        // cout << "Sieczne: " << root_secants << endl;
         cout << "\n";
+        ilosc_miejsc_zerowych++;
         }
-    }
+    // }
+    cout << "Ilosc miejsc zerowych: " << ilosc_miejsc_zerowych << endl;
 
-    double b_startowe = 3;
-    for (a;a<b_startowe;a += 0.01){
-    double b = a + 0.01;
-    double root_falsi = falsi(fn23,a,b);
-    if(isfinite(root_falsi)){
-        cout << "Zakres " << a << " -> " << b << ". " << endl;
-        cout << "Miejsce zerowe (falsi): " << root_falsi << endl;
-        cout << "Blad: " << abs(fn23(root_falsi)) << endl << endl;
-        }
-    }
-    // double a = -3;
-    // double b_startowe = 4;
-    // // for (a;a<b_startowe;a+=0.1){
-    // // double b = a + 0.1;
-    // double b = b_startowe;
-    // if(isfinite(bisection(fn2,a,b)) && isfinite(newtons_nonlinear(fn2,dfn2,a,b)) && isfinite(secants(fn2,a,b))){
+    // double b_startowe = 3;
+    // for (a;a<b_startowe;a += 0.01){
+    // double b = a + 0.01;
+    // double root_falsi = falsi(fn23,a,b);
+    // if(isfinite(root_falsi)){
     //     cout << "Zakres " << a << " -> " << b << ". " << endl;
-    //     cout << "Miejsca zerowe: " << endl;
-    //     cout << "Bisekcja: " << bisection(fn2,a,b) << endl;
-    //     cout << "Newton: " << newtons_nonlinear(fn2,dfn2,a,b) << endl;
-    //     cout << "Sieczne: " << secants(fn2,a,b) << endl;
-    //     cout << "\n\n";
+    //     cout << "Miejsce zerowe (falsi): " << root_falsi << endl;
+    //     cout << "Blad: " << abs(fn23(root_falsi)) << endl << endl;
     //     }
-    // // }
+    // }
     return 0;
 }
 
