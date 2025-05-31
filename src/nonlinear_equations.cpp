@@ -1,5 +1,6 @@
 #include <nonlinear_equations.hpp>
 #include <math.h>
+#include <fstream>
 using namespace std;
 
 double fn1(double x){
@@ -43,9 +44,9 @@ double df_num(std::function<double(double)> f, double x, double h=1e-6){
 }
 
 double bisection(std::function<double(double)> f, double a, double b, double tol) {
-    cout << "------------ BISEKCJA ------------" << endl;
+    // cout << "------------ BISEKCJA ------------" << endl;
     if (f(a) * f(b) >= 0) {
-        return NAN; // Root not bracketed
+        return NAN;
     }
 
     double c;
@@ -62,7 +63,7 @@ double bisection(std::function<double(double)> f, double a, double b, double tol
             b = c;
         else
             a = c;
-        cout << "Przyblizenie: " << c << endl;
+        // cout << "Przyblizenie: " << c << endl;
         i++;
     }
 
@@ -70,7 +71,7 @@ double bisection(std::function<double(double)> f, double a, double b, double tol
 }
 
 double newtons_nonlinear(std::function<double(double)> f, std::function<double(double)> df, double x0, double tol, int max_iter) {
-    cout << "------------ NEWTON ANALITYCZNIE -" << endl;
+    // cout << "------------ NEWTON ANALITYCZNIE -" << endl;
     double x = x0;
 
     for (int i = 0; i < max_iter; ++i) {
@@ -88,14 +89,14 @@ double newtons_nonlinear(std::function<double(double)> f, std::function<double(d
         }
 
         x = x_new;
-        cout << "Przyblizenie: " << x_new << endl;
+        // cout << "Przyblizenie: " << x_new << endl;
     }
 
     return NAN;
 }
 
 double newtons_nonlinear_numeric(std::function<double(double)> f, double x0, double tol, int max_iter) {
-    cout << "------------ NEWTON NUMERYCZNIE --" << endl;
+    // cout << "------------ NEWTON NUMERYCZNIE --" << endl;
     double x = x0;
 
     for (int i = 0; i < max_iter; ++i) {
@@ -113,14 +114,14 @@ double newtons_nonlinear_numeric(std::function<double(double)> f, double x0, dou
         }
 
         x = x_new;
-        cout << "Przyblizenie: " << x_new << endl;
+        // cout << "Przyblizenie: " << x_new << endl;
     }
 
     return NAN;
 }
 
 double secants(std::function<double(double)> f, double x0, double x1, double tol, int max_iter) {
-    cout << "------------ SIECZNE -------------" << endl;
+    // cout << "------------ SIECZNE -------------" << endl;
     double f0 = f(x0);
     double f1 = f(x1);
 
@@ -153,13 +154,14 @@ double secants(std::function<double(double)> f, double x0, double x1, double tol
         x1 = x2;
         f1 = f2;
 
-        cout << "Przyblizenie: " << x2 << endl;
+        // cout << "Przyblizenie: " << x2 << endl;
     }
     return NAN;
 }
 
-double falsi(std::function<double(double)> f, double a, double b, double tol, int max_iter){
-
+double falsi(std::function<double(double)> f, double a, double b,int nr_miejsca_zerowego, double tol, int max_iter){
+    // cout << "------------ FALSI ---------------" << endl;
+    // ofstream file("root" + to_string(nr_miejsca_zerowego) + ".csv");
     if (f(a) * f(b) >= 0) {
         return NAN;
     }
@@ -170,6 +172,7 @@ double falsi(std::function<double(double)> f, double a, double b, double tol, in
         double fc = f(c);
 
         if (std::abs(fc) < tol) {
+            // file << c << "," << f(c) << endl;
             return c;
         }
 
@@ -178,7 +181,11 @@ double falsi(std::function<double(double)> f, double a, double b, double tol, in
         } else {
             a = c;
         }
-        // cout << "Nr. iteracji: " << i << " ,przyblizenie: " << c << endl;
+        if (isfinite(c)){
+            // cout << "Przyblizenie: " << c << " Blad: " << f(c) << endl;
+            // file << c << "," << f(c) << endl;
+            // cout << c << endl;
+        }
     }
 
     return c;

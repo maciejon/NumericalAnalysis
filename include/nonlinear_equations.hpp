@@ -19,4 +19,4 @@ double bisection(std::function<double(double)> f, double a, double b, double tol
 double secants(std::function<double(double)> f, double a, double b, double tol = 1e-7, int max_iter = 100);
 double newtons_nonlinear(std::function<double(double)> f, std::function<double(double)> df, double x, double tol = 1e-7, int max_iter = 100);
 double newtons_nonlinear_numeric(std::function<double(double)> f, double x, double tol = 1e-7, int max_iter = 100);
-double falsi(std::function<double(double)> f, double a, double b, double tol = 1e-7, int max_iter = 7);
+double falsi(std::function<double(double)> f, double a, double b,int nr_miejsca_zerowego=0, double tol = 1e-7, int max_iter = 10);
