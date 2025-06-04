@@ -42,13 +42,12 @@ int main() {
     if(isfinite(root_falsi)){
         cout << "Zakres " << a << " -> " << b << ". " << endl;
         // cout << "Miejsca zerowe: " << endl;
-        cout << "Miejsce zerowe:: " << root_falsi << " Blad: " << abs(FNC(root_falsi)) << endl;
         // cout << "Miejsce zerowe:: " << root_falsi << endl;
         // cout << root_falsi << endl;
-        // cout << "Bisekcja: " << root_bisection << " Blad: " << abs(FNC(root_bisection)) << endl;
-        // cout << "Newton:   " << root_newton_num << " Blad: " << abs(FNC(root_newton_num)) << endl;
-        // cout << "Sieczne:  " << root_secants << " Blad: " << abs(FNC(root_secants)) << endl;
-        // cout << "Falsi:    " << root_falsi << " Blad: " << abs(FNC(root_falsi)) << endl;
+        cout << "Bisekcja: " << root_bisection << " Blad: " << abs(FNC(root_bisection)) << endl;
+        cout << "Newton:   " << root_newton_num << " Blad: " << abs(FNC(root_newton_num)) << endl;
+        cout << "Sieczne:  " << root_secants << " Blad: " << abs(FNC(root_secants)) << endl;
+        cout << "Falsi:    " << root_falsi << " Blad: " << abs(FNC(root_falsi)) << endl;
         // cout << "\n";
         ilosc_miejsc_zerowych++;
         }
